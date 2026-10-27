@@ -1,0 +1,80 @@
+<html>
+<head>
+<title>Weather Display</title>
+<style>
+body{
+  font-family: Arial;
+  background: #e3f2fd;
+  text-align: center;
+}
+.box{
+  background: white;
+  width: 320px;
+  margin: 60px auto;
+  padding: 20px;
+  border-radius: 12px;
+}
+select{
+  width: 100%;
+  padding: 8px;
+  margin-top: 10px;
+}
+#icon{
+  font-size: 80px;
+  margin-top: 20px;
+}
+#desc{
+  font-size: 16px;
+  color: #333;
+}
+</style>
+</head>
+<body id="body">
+
+<div class="box">
+<h2>Weather App</h2>
+
+<select id="weather" onchange="showWeather()">
+  <option value="">-- Select Weather --</option>
+  <option value="sunny">Sunny</option>
+  <option value="rainy">Rainy</option>
+  <option value="cloudy">Cloudy</option>
+  <option value="stormy">Stormy</option>
+  <option value="snowy">Snowy</option>
+</select>
+
+<div id="icon">⛅</div>
+<p id="desc"></p>
+
+<p style="color:gray;font-size:12px"></p>
+</div>
+
+<script>
+var data = {
+  sunny: { icon: "☀️", text: "Sunny day, bright and hot", bg: "#fff9c4" },
+  rainy: { icon: "🌧️", text: "Rainy day, carry umbrella", bg: "#bbdefb" },
+  cloudy: { icon: "☁️", text: "Cloudy weather, cool outside", bg: "#e0e0e0" },
+  stormy: { icon: "⛈️", text: "Stormy weather, stay inside", bg: "#b0bec5" },
+  snowy: { icon: "❄️", text: "Snowy day, very cold", bg: "#e1f5fe" }
+};
+
+function showWeather(){
+  var val = document.getElementById("weather").value;
+  var iconEl = document.getElementById("icon");
+  var descEl = document.getElementById("desc");
+  var body = document.getElementById("body");
+
+  if(val == ""){
+    iconEl.innerHTML = "⛅";
+    descEl.innerHTML = "Please select a weather condition";
+    body.style.background = "#e3f2fd";
+  } else {
+    iconEl.innerHTML = data[val].icon;
+    descEl.innerHTML = data[val].text;
+    body.style.background = data[val].bg;
+  }
+}
+</script>
+
+</body>
+</html>
